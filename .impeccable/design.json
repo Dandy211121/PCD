@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-26T21:49:50.000Z",
+  "title": "Design System: Crack Inspection Platform",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Cobalt Radar",
+        "canonical": "#2563eb",
+        "tonalRamp": ["#0b1c3d", "#172b5c", "#1e3a8a", "#1d4ed8", "#2563eb", "#3b82f6", "#60a5fa", "#93c5fd", "#dbeafe", "#eff6ff"]
+      },
+      "surface-cockpit": {
+        "role": "neutral",
+        "displayName": "Obsidian Deep",
+        "canonical": "#0b0f19",
+        "tonalRamp": ["#05080d", "#0b0f19", "#0f172a", "#1e293b", "#334155", "#475569", "#64748b", "#94a3b8", "#cbd5e1", "#f8fafc"]
+      },
+      "status-safe": {
+        "role": "status",
+        "displayName": "Safety Emerald",
+        "canonical": "#10b981",
+        "tonalRamp": ["#064e3b", "#047857", "#059669", "#10b981", "#34d399", "#6ee7b7", "#a7f3d0", "#d1fae5"]
+      },
+      "status-critical": {
+        "role": "status",
+        "displayName": "Alarm Rose",
+        "canonical": "#ef4444",
+        "tonalRamp": ["#4c0519", "#881337", "#be123c", "#e11d48", "#ef4444", "#f43f5e", "#fb7185", "#fda4af"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Cockpit console title and hero headline." },
+      "headline": { "displayName": "Headline", "purpose": "Section headings and telemetry views." },
+      "title": { "displayName": "Title", "purpose": "Card titles and structure names." },
+      "body": { "displayName": "Body", "purpose": "Civil engineering notes and field observations." },
+      "label": { "displayName": "Label", "purpose": "Grid cell tags, coordinates, and severity badges." }
+    },
+    "shadows": [
+      { "name": "telemetry-glow", "value": "0 8px 24px -4px rgba(37, 99, 235, 0.25)", "purpose": "Luminous aura for active buttons and AI indicators." },
+      { "name": "glass-elevation", "value": "0 12px 36px -8px rgba(0, 0, 0, 0.5)", "purpose": "Depth for floating cards and inspection modals." }
+    ],
+    "motion": [
+      { "name": "ease-cockpit", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Snappy, authoritative state transition for telemetry controls." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary action button for running AI scans and submitting audit records.",
+      "html": "<button class=\"ds-btn-primary\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>JALANKAN SCAN RESNET-18</button>",
+      "css": ".ds-btn-primary { background: #2563eb; color: #ffffff; padding: 10px 20px; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-weight: 600; border-radius: 12px; border: none; cursor: pointer; display: inline-flex; items-center: center; gap: 8px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3); transition: transform 0.2s, background 0.2s; } .ds-btn-primary:hover { background: #1d4ed8; transform: translateY(-1px) scale(1.02); } .ds-btn-primary .ds-icon { width: 16px; height: 16px; }"
+    },
+    {
+      "name": "Cockpit Glass Card",
+      "kind": "card",
+      "refersTo": "card-glass",
+      "description": "Standard frosted card container with 10px blur and subtle border highlight.",
+      "html": "<div class=\"ds-card-glass\"><div class=\"ds-card-title\">Jembatan Suramadu - Pier P46</div><div class=\"ds-card-meta\">Tipe: Jembatan Beton Prategang • Inspektor: Ir. Hendra Pratama</div></div>",
+      "css": ".ds-card-glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 24px; color: #f8fafc; font-family: Inter, system-ui, sans-serif; } .ds-card-title { font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 6px; } .ds-card-meta { font-size: 12px; color: #94a3b8; }"
+    },
+    {
+      "name": "Severity Badge - Kritis",
+      "kind": "chip",
+      "refersTo": "chip-severity-critical",
+      "description": "Warning pill indicator for structures under critical degradation (>25% crack ratio).",
+      "html": "<span class=\"ds-badge-critical\"><span class=\"ds-badge-dot\"></span>TINGKAT KRITIS</span>",
+      "css": ".ds-badge-critical { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 9999px; font-family: Inter, monospace, sans-serif; font-size: 11px; font-weight: 700; background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); text-transform: uppercase; } .ds-badge-dot { width: 6px; height: 6px; border-radius: 9999px; background: #ef4444; }"
+    },
+    {
+      "name": "Grid Cell Tile (Crack Detected)",
+      "kind": "custom",
+      "refersTo": "grid-cell-active",
+      "description": "Tactile interactive 6x6 matrix petak showing detected crack, coordinate, and confidence.",
+      "html": "<div class=\"ds-cell-crack\"><span class=\"ds-cell-id\">P14</span><span class=\"ds-cell-coord\">[3,2]</span><span class=\"ds-cell-conf\">92.4%</span></div>",
+      "css": ".ds-cell-crack { width: 56px; height: 56px; border-radius: 12px; background: rgba(239, 68, 68, 0.2); border: 1.5px solid #ef4444; color: #fca5a5; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: ui-monospace, monospace; cursor: pointer; transition: transform 0.2s; box-shadow: 0 0 12px rgba(239, 68, 68, 0.25); } .ds-cell-crack:hover { transform: scale(1.08); z-index: 2; } .ds-cell-id { font-size: 10px; font-weight: 800; } .ds-cell-coord { font-size: 8px; opacity: 0.8; } .ds-cell-conf { font-size: 9px; font-weight: 700; color: #f87171; margin-top: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Structural Cockpit",
+    "overview": "The Crack Inspection Platform is a mission-critical civil engineering telemetry and forensic audit console. It operates as a focused, dark-mode cockpit for structural engineers and field inspectors evaluating concrete integrity across bridges, high-rise building pillars, and dams. The visual atmosphere is calm, precise, and authoritative—eliminating visual noise while presenting high-resolution spatial crack maps, AI confidence values, and structural risk indicators with zero ambiguity.",
+    "keyCharacteristics": [
+      "Zero-Distraction Telemetry: Deep obsidian surfaces with frosted glass layers keeping spatial crack maps and quantitative metrics central.",
+      "Calibrated Safety Spectrum: Uncompromising color grammar mapping directly to structural danger levels.",
+      "Tactile Decisiveness: Rounded 12px–24px containers with micro-scale interactive states, crisp luminous borders, and responsive feedback.",
+      "Engineering Authenticity: Font choices, monospace coordinate badges, and ReportLab-aligned tabular data."
+    ],
+    "rules": [
+      { "name": "The Rarity of Red Rule", "body": "The Alarm Rose hue is strictly reserved for confirmed structural cracks and emergency hazard states. It must never appear on generic action buttons or secondary UI decorations.", "section": "colors" },
+      { "name": "The Glass Depth Rule", "body": "Floating cards must always maintain subtle border illumination (rgba(255,255,255,0.08)) with backdrop blur (10px–12px) against the obsidian canvas, avoiding opaque flat gray blocks.", "section": "colors" },
+      { "name": "The Monospace Telemetry Rule", "body": "All grid cell identifiers (P1–P36), coordinates ([row, col]), percentages, and audit IDs must render in monospace font to emphasize scientific precision.", "section": "typography" },
+      { "name": "The Tonal Lift Rule", "body": "Hovering over interactive cards or inspection rows translates elements upwards by 1px–2px with a subtle background light lift, avoiding artificial dark shadows.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do format all AI petak IDs, rows, columns, and percentages with monospace font.",
+      "Do maintain the 6x6 matrix spatial proportions (square aspect ratio) during image slicing.",
+      "Do reserve high-saturation red exclusively for active cracks and critical degradation alerts.",
+      "Do display both the raw cell count alongside the calculated percentage.",
+      "Do keep cards and navigation frosted (backdrop-filter: blur) against the obsidian canvas."
+    ],
+    "donts": [
+      "Don't use generic bright primary colors outside the established civil engineering safety spectrum.",
+      "Don't use opaque flat gray cards that kill the glassmorphism depth.",
+      "Don't hide quantitative metrics behind unnecessary clicks—keep critical indicators immediately visible.",
+      "Don't display crack detections without corresponding AI confidence percentages."
+    ]
+  }
+}
